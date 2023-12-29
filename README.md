@@ -1,14 +1,12 @@
-# Breast-Cancer-Detection-with-ImageMaskNet-CNN
+# Dataset Description
 
-## Dataset Description
-
-### Overview
+## Overview
 The Breast Ultrasound Images Dataset forms the cornerstone of our deep learning project, which focuses on the classification of breast ultrasound images into three distinct categories: normal, benign, and malignant. This dataset is instrumental in training and validating the ImageMaskNet, our custom CNN architecture, designed specifically for early breast cancer detection.
 
-### Composition and Source
+## Composition and Source
 The dataset comprises 780 ultrasound images, systematically collected from 600 female patients, ranging in age from 25 to 75 years. The data was gathered in 2018 with the primary objective of facilitating breast cancer research. Each image in the dataset maintains an average size of 500x500 pixels and is presented in PNG format, ensuring high-quality and consistency for computational analysis.
 
-### Categories
+## Categories
 The dataset categorizes images into three groups, each representing a different breast tissue condition:
 
 - **Normal:** Images classified under this category depict healthy breast tissue, exhibiting no signs of tumors or other abnormalities.
@@ -17,9 +15,49 @@ The dataset categorizes images into three groups, each representing a different 
 
 - **Malignant:** Images in this category indicate the presence of cancerous growths, highlighting cases that necessitate urgent medical attention.
 
-### Significance
+## Significance
 The dataset's diversity and comprehensiveness enable the effective training of deep learning models. It provides a realistic representation of various breast tissue conditions, facilitating the development of an AI system capable of distinguishing between normal, benign, and malignant states with high accuracy. The usage of this dataset in our project exemplifies the integration of machine learning in medical diagnostics, potentially revolutionizing the early detection and treatment of breast cancer.
 
-### Citation
+## Citation
 In acknowledgment of the dataset's origin and in compliance with academic standards, we cite the following source for the dataset used in our project:
 Al-Dhabyani W, Gomaa M, Khaled H, Fahmy A. Dataset of breast ultrasound images. Data in Brief. 2020 Feb;28:104863. DOI: 10.1016/j.dib.2019.104863.
+
+# Methodology
+
+## Introduction to Methodology
+In this report, we explore the methodologies behind two specialized deep learning models developed for breast cancer detection using ultrasound imaging. Our investigation focuses on two distinct approaches to understand the efficacy and practicality of the models in real-world scenarios.
+
+The journey began with Model 1, a convolutional neural network (CNN) designed exclusively for classification purposes. This model was trained and tested on a combination of ultrasound images and their corresponding masks, yielding impressive results. This initial success demonstrated the potential of combining mask and image data for accurate classification.
+
+However, recognizing the practical limitations in clinical settings, where masks may not always be readily available, we developed Model 2. This model followed a similar training approach as Model 1, utilizing both mask and ultrasound data. The critical divergence came during the testing phase, where Model 2 was evaluated solely on ultrasound images, without the aid of masks. This approach was aimed at assessing the model's ability to leverage the learning from masks during training but still perform robustly when only ultrasound images are available for diagnosis.
+
+The rationale behind this dual-model exploration is to evaluate the performance of a mask-informed CNN when tested under different conditions: one with the ideal scenario of having both masks and images, and the other simulating a more common clinical environment where only ultrasound images are available. This comparative study aims to provide insights into the adaptability and practical application of CNNs in breast cancer detection, bridging the gap between theoretical accuracy and clinical usability.
+
+This section will detail each model's architecture, data preprocessing methods, training processes, and testing strategies, providing a comprehensive understanding of the methodologies employed in this research. Through this analysis, we aim to contribute valuable knowledge to the field of medical imaging and cancer diagnosis, emphasizing the importance of adaptable and realistic AI solutions in healthcare.
+
+## Model 1: Dual-Input Classifier (DIC-Net)
+
+### Model 1 Architecture: ImageMaskNet
+ImageMaskNet is a dual-branch convolutional neural network (CNN) designed for analyzing breast ultrasound images along with their corresponding masks. The architecture is bifurcated into two distinct pathways – the image branch and the mask branch – each tailored to process a specific type of input.
+
+## Image Branch:
+- Input: This branch takes the standard 3-channel (RGB) ultrasound images.
+- Layer 1: A convolutional layer with 32 filters, a kernel size of 3x3, and padding of 1. It is followed by a ReLU (Rectified Linear Unit) activation function.
+- Pooling 1: A 2x2 max pooling layer reduces the spatial dimensions by half.
+- Layer 2: Another convolutional layer with 64 filters, a 3x3 kernel, and padding of 1, followed by a ReLU activation function.
+- Pooling 2: A second 2x2 max pooling layer further reduces the feature map size.
+
+## Mask Branch:
+- Input: This branch processes the single-channel (grayscale) mask images associated with the ultrasound data.
+- Layer 1: A convolutional layer with 32 filters, 3x3 kernel size, and padding of 1, followed by a ReLU activation.
+- Pooling 1: A 2x2 max pooling layer for spatial dimension reduction.
+- Layer 2: A convolutional layer with 64 filters, 3x3 kernel, and padding of 1, followed by a ReLU activation function.
+- Pooling 2: Another 2x2 max pooling layer.
+
+## Combined Fully Connected Layers:
+The ImageMaskNet architecture culminates in its combined fully connected layers, where features from the image and mask branches are flattened, merged, and then channeled through a dense neural layer of 128 neurons with ReLU activation. This integration harnesses the detailed insights from both the ultrasound imagery and masks. The neural network's final layer, reflecting the three distinct classification categories—normal, benign, and malignant—outputs the model's predictive verdict. This design aims to capitalize on the rich, complementary information from dual data sources to refine the model's diagnostic acumen for breast cancer detection.
+
+
+
+
+
