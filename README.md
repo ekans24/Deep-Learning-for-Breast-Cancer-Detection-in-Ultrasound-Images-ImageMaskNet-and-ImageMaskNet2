@@ -61,10 +61,17 @@ _Figure 2: Flow diagram of ImageMaskNet, illustrating the dual-pathway processin
 ## Combined Fully Connected Layers:
 The ImageMaskNet architecture culminates in its combined fully connected layers, where features from the image and mask branches are flattened, merged, and then channeled through a dense neural layer of 128 neurons with ReLU activation. This integration harnesses the detailed insights from both the ultrasound imagery and masks. The neural network's final layer, reflecting the three distinct classification categories—normal, benign, and malignant—outputs the model's predictive verdict. This design aims to capitalize on the rich, complementary information from dual data sources to refine the model's diagnostic acumen for breast cancer detection.
 
+## Data Preprocessing
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/91eb57e4-5a0c-441e-bcc5-8047db5b30eb)
 
-Data Preprocessing:
 
-Training Process:
+The preprocessing of the Breast Ultrasound Images Dataset involved a series of transformational steps to render the images suitable for analysis by the ImageMaskNet model. Initially, each image within the dataset, irrespective of its classification as benign, malignant, or normal, was resized to a consistent dimension of 256x256 pixels to standardize the input size for the neural network.
+
+A custom dataset handler, CustomImageMaskDataset, was utilized to streamline the loading and processing of the images alongside their associated masks. The image transformation pipeline incorporated a resizing step followed by a conversion to tensor format, facilitating compatibility with the PyTorch framework used for model training.
+
+For the training subset, data augmentation was applied, introducing random horizontal flips to the images. This technique was intended to diversify the training data, aiding the model in developing robustness against variations and potentially enhancing its generalization capabilities.
+
+## Training
 
 Model Evaluation and Validation:
 
