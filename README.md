@@ -41,6 +41,7 @@ This section will detail each model's architecture, data preprocessing methods, 
 ImageMaskNet is a dual-branch convolutional neural network (CNN) designed for analyzing breast ultrasound images along with their corresponding masks. The architecture is bifurcated into two distinct pathways – the image branch and the mask branch – each tailored to process a specific type of input.
 
 ![ImageMaskNet_FlowDiagram](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/252f653f-bc4e-4bc5-8734-0136b84a6982)
+
 _Figure 2: Flow diagram of ImageMaskNet, illustrating the dual-pathway processing of RGB images and grayscale masks, feature concatenation, and classification into three categories._
 
 ## Image Branch:
