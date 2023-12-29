@@ -1,7 +1,7 @@
 # Dataset Description
 
 ## Overview
-The Breast Ultrasound Images Dataset forms the cornerstone of our deep learning project, which focuses on the classification of breast ultrasound images into three distinct categories: normal, benign, and malignant. This dataset is instrumental in training and validating the ImageMaskNet, our custom CNN architecture, designed specifically for early breast cancer detection.
+The Breast Ultrasound Images Dataset forms the cornerstone of our deep learning project, which focuses on the classification of breast ultrasound images into three distinct categories: normal, benign, and malignant. This dataset is instrumental in training and validating the ImageMaskNet, our custom CNN architecture, designed specifically for early breast cancer detection. The data is downloadable from https://www.kaggle.com/datasets/aryashah2k/breast-ultrasound-images-dataset
 
 ![Figure 2023-12-29 060030](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/87acda56-6d31-4e3e-af6b-15f7b142b292)
 _Figure 1: Comparative Display of Ultrasound Images with Segmentation Masks and Overlays for Benign and Malignant Breast Tissues. The left column illustrates benign cases with well-defined mask outlines, while the right column shows malignant cases with irregular mask patterns, both overlaid on the original images to emphasize the areas of interest._
@@ -21,10 +21,6 @@ The dataset categorizes images into three groups, each representing a different 
 
 ## Significance
 The dataset's diversity and comprehensiveness enable the effective training of deep learning models. It provides a realistic representation of various breast tissue conditions, facilitating the development of an AI system capable of distinguishing between normal, benign, and malignant states with high accuracy. The usage of this dataset in our project exemplifies the integration of machine learning in medical diagnostics, potentially revolutionizing the early detection and treatment of breast cancer.
-
-## Citation
-In acknowledgment of the dataset's origin and in compliance with academic standards, we cite the following source for the dataset used in our project:
-Al-Dhabyani W, Gomaa M, Khaled H, Fahmy A. Dataset of breast ultrasound images. Data in Brief. 2020 Feb;28:104863. DOI: 10.1016/j.dib.2019.104863.
 
 # Methodology
 
@@ -65,3 +61,36 @@ The ImageMaskNet architecture culminates in its combined fully connected layers,
 
 
 
+
+
+
+
+
+
+
+
+## Citation
+In acknowledgment of the dataset's origin and in compliance with academic standards, we cite the following source for the dataset used in our project:
+Al-Dhabyani W, Gomaa M, Khaled H, Fahmy A. Dataset of breast ultrasound images. Data in Brief. 2020 Feb;28:104863. DOI: 10.1016/j.dib.2019.104863.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Citation
+In acknowledgment of the dataset's origin and in compliance with academic standards, we cite the following source for the dataset used in our project:
+Al-Dhabyani W, Gomaa M, Khaled H, Fahmy A. Dataset of breast ultrasound images. Data in Brief. 2020 Feb;28:104863. DOI: 10.1016/j.dib.2019.104863.
