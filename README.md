@@ -80,6 +80,12 @@ For the training subset, data augmentation was applied, introducing random horiz
 
 ## Training
 
+In the development of ImageMaskNet, the dataset was partitioned into two subsets: 80% was allocated for training the model, while the remaining 20% was reserved for testing its performance. This approach ensured that a substantial amount of data was used for the model to learn the underlying patterns, while still retaining a separate dataset to unbiasedly evaluate its generalization capabilities.
+
+The training phase was executed over twenty epochs, with each epoch encapsulating a complete iteration across the entire training dataset. The learning rate and weight decay parameters were fine-tuned to 0.001 and 1e-4, respectively, as determined by a thorough grid search to ascertain the optimal settings. These parameters play a crucial role in guiding the convergence of the model towards a robust solution that avoids overfitting.
+
+Throughout the training process, epoch—loss and accuracy and accuracy were recorded. The loss metric gauges the model's prediction errors, with a lower loss indicative of improved model predictions. Conversely, accuracy measures the proportion of correctly predicted instances, providing a direct reflection of the model's predictive prowess. The overarching aim was to observe a consistent reduction in loss alongside an increment in accuracy, signifying the model's successful learning trajectory.
+
 Model Evaluation and Validation:
 
 Challenges and Solutions:
