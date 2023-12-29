@@ -40,6 +40,9 @@ This section will detail each model's architecture, data preprocessing methods, 
 ### Model 1 Architecture: ImageMaskNet
 ImageMaskNet is a dual-branch convolutional neural network (CNN) designed for analyzing breast ultrasound images along with their corresponding masks. The architecture is bifurcated into two distinct pathways – the image branch and the mask branch – each tailored to process a specific type of input.
 
+![ImageMaskNet_FlowDiagram](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/252f653f-bc4e-4bc5-8734-0136b84a6982)
+_Figure 2: Flow diagram of ImageMaskNet, illustrating the dual-pathway processing of RGB images and grayscale masks, feature concatenation, and classification into three categories._
+
 ## Image Branch:
 - Input: This branch takes the standard 3-channel (RGB) ultrasound images.
 - Layer 1: A convolutional layer with 32 filters, a kernel size of 3x3, and padding of 1. It is followed by a ReLU (Rectified Linear Unit) activation function.
@@ -58,6 +61,17 @@ ImageMaskNet is a dual-branch convolutional neural network (CNN) designed for an
 The ImageMaskNet architecture culminates in its combined fully connected layers, where features from the image and mask branches are flattened, merged, and then channeled through a dense neural layer of 128 neurons with ReLU activation. This integration harnesses the detailed insights from both the ultrasound imagery and masks. The neural network's final layer, reflecting the three distinct classification categories—normal, benign, and malignant—outputs the model's predictive verdict. This design aims to capitalize on the rich, complementary information from dual data sources to refine the model's diagnostic acumen for breast cancer detection.
 
 
+Data Preprocessing:
+
+Training Process:
+
+Model Evaluation and Validation:
+
+Challenges and Solutions:
+
+Address any challenges encountered during the model development and training process.
+
+Discuss the solutions or adjustments made to overcome these challenges.
 
 
 
@@ -65,13 +79,6 @@ The ImageMaskNet architecture culminates in its combined fully connected layers,
 
 
 
-
-
-
-
-## Citation
-In acknowledgment of the dataset's origin and in compliance with academic standards, we cite the following source for the dataset used in our project:
-Al-Dhabyani W, Gomaa M, Khaled H, Fahmy A. Dataset of breast ultrasound images. Data in Brief. 2020 Feb;28:104863. DOI: 10.1016/j.dib.2019.104863.
 
 
 
