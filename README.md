@@ -63,8 +63,13 @@ _Figure 2: Flow diagram of ImageMaskNet, illustrating the dual-pathway processin
 The ImageMaskNet architecture culminates in its combined fully connected layers, where features from the image and mask branches are flattened, merged, and then channeled through a dense neural layer of 128 neurons with ReLU activation. This integration harnesses the detailed insights from both the ultrasound imagery and masks. The neural network's final layer, reflecting the three distinct classification categories—normal, benign, and malignant—outputs the model's predictive verdict. This design aims to capitalize on the rich, complementary information from dual data sources to refine the model's diagnostic acumen for breast cancer detection.
 
 ## Data Preprocessing
+
+Combining Multiple Masks
+For some ultrasound images in our dataset, there were multiple mask files highlighting various areas of interest. To simplify the input to our neural network, we combined these multiple masks into a single mask image. This was done by overlaying the individual masks on top of each other, ensuring that no details were lost from the original set of masks.
+
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/91eb57e4-5a0c-441e-bcc5-8047db5b30eb) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/d5c7c0d7-ba50-4db2-8349-d2bb9ae553c7) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/31b90fe3-7b58-45cf-9d40-b3a18c1b28b3) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/63b4530d-99a3-4e29-a58b-4e098560af20)
 
+_Figure 2: The sequence of images demonstrates the process of combining multiple masks into one. The first image is the original ultrasound, followed by separate mask images, and ending with a single combined mask. This final, combined mask image is used for training the neural network, ensuring it has a complete view of all areas of interest._
 
 
 The preprocessing of the Breast Ultrasound Images Dataset involved a series of transformational steps to render the images suitable for analysis by the ImageMaskNet model. Initially, each image within the dataset, irrespective of its classification as benign, malignant, or normal, was resized to a consistent dimension of 256x256 pixels to standardize the input size for the neural network.
