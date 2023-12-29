@@ -4,6 +4,8 @@
 The Breast Ultrasound Images Dataset forms the cornerstone of our deep learning project, which focuses on the classification of breast ultrasound images into three distinct categories: normal, benign, and malignant. This dataset is instrumental in training and validating the ImageMaskNet, our custom CNN architecture, designed specifically for early breast cancer detection.
 
 ![Figure 2023-12-29 060030](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/87acda56-6d31-4e3e-af6b-15f7b142b292)
+_Figure 1: Comparative Display of Ultrasound Images with Segmentation Masks and Overlays for Benign and Malignant Breast Tissues. The left column illustrates benign cases with well-defined mask outlines, while the right column shows malignant cases with irregular mask patterns, both overlaid on the original images to emphasize the areas of interest.
+_
 
 ## Composition and Source
 The dataset comprises 780 ultrasound images, systematically collected from 600 female patients, ranging in age from 25 to 75 years. The data was gathered in 2018 with the primary objective of facilitating breast cancer research. Each image in the dataset maintains an average size of 500x500 pixels and is presented in PNG format, ensuring high-quality and consistency for computational analysis.
