@@ -155,15 +155,6 @@ The plots and metrics tell a story of a model that learns efficiently and genera
 
 It's noteworthy that despite the high accuracy, the model did not reach a perfect score. This is a realistic outcome, reflecting the inherent uncertainty and variability in medical image interpretation.
 
-
-
-
-
-
-
-
-
-
 ## Citation
 In acknowledgment of the dataset's origin and in compliance with academic standards, we cite the following source for the dataset used in our project:
 Al-Dhabyani W, Gomaa M, Khaled H, Fahmy A. Dataset of breast ultrasound images. Data in Brief. 2020 Feb;28:104863. DOI: 10.1016/j.dib.2019.104863.
