@@ -69,7 +69,7 @@ For some ultrasound images in our dataset, there were multiple mask files highli
 
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/91eb57e4-5a0c-441e-bcc5-8047db5b30eb) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/d5c7c0d7-ba50-4db2-8349-d2bb9ae553c7) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/31b90fe3-7b58-45cf-9d40-b3a18c1b28b3) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/63b4530d-99a3-4e29-a58b-4e098560af20)
 
-_Figure 2: The sequence of images demonstrates the process of combining multiple masks into one. The first image is the original ultrasound, followed by separate mask images, and ending with a single combined mask. This final, combined mask image is used for training the neural network, ensuring it has a complete view of all areas of interest._
+_Figure 3: The sequence of images demonstrates the process of combining multiple masks into one. The first image is the original ultrasound, followed by separate mask images, and ending with a single combined mask. This final, combined mask image is used for training the neural network, ensuring it has a complete view of all areas of interest._
 
 
 The preprocessing of the Breast Ultrasound Images Dataset involved a series of transformational steps to render the images suitable for analysis by the ImageMaskNet model. Initially, each image within the dataset, irrespective of its classification as benign, malignant, or normal, was resized to a consistent dimension of 256x256 pixels to standardize the input size for the neural network.
@@ -88,10 +88,11 @@ Throughout the training process, epoch—loss and accuracy and accuracy were rec
 
 ## Model Evaluation and Validation:
 
+An integral part of our model evaluation is the visual validation of predictions made by ImageMaskNet. 
+
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/171c38b6-1d65-4602-b8c0-a8fe144f1e07)
 
-
-
+_Figure 4: illustrates a selection of ultrasound images across the three classes—benign, malignant, and normal—with both the ground truth and the model's predictions labeled._
 
 
 ### Performance Overview
@@ -102,14 +103,14 @@ The accuracy graph shows a clear trend of increasing accuracy on both the traini
 
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/2a329eb6-ca0c-4522-9ef5-e757f93bac20)
 
-_Figure 3 - Accuracy vs. Epoch: A line graph showing the training and test accuracy over the epochs._
+_Figure 5 - Accuracy vs. Epoch: A line graph showing the training and test accuracy over the epochs._
 
 ### Loss Analysis
 The loss graph complements the accuracy analysis by showing a corresponding decrease in loss for both the training and testing data (Figure Y). The training loss reduced from 0.9322 to 0.0278, and the testing loss followed suit, starting from 0.5944 and ending at 0.0468. The convergence of training and test loss also suggests that the model is learning general features rather than overfitting to the training set.
 
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/78a3a542-1fef-481b-a5e2-741431b0a792)
 
-_Figure 4 - Loss vs. Epoch: A line graph illustrating the decline in training and test loss over the epochs._
+_Figure 6 - Loss vs. Epoch: A line graph illustrating the decline in training and test loss over the epochs._
 
 ### Precision and Recall
 In addition to accuracy, precision and recall are critical metrics, particularly in the medical imaging domain where the cost of false positives and negatives can be high. The model achieved a final test precision and recall of 98.74% and 98.72%, respectively. These values are highly desirable, showing that the model is not only accurate but also reliable in its positive predictions (precision) and sensitive in identifying positive cases (recall).
