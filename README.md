@@ -101,35 +101,34 @@ The ImageMaskNet was subjected to a rigorous training and testing process over 1
 The accuracy graph shows a clear trend of increasing accuracy on both the training and testing datasets as the epochs progress (Figure X). The model's training accuracy started at 65.9% and improved significantly to 99.36% by the 10th epoch. The testing accuracy followed a similar upward trend, starting at 71.79% and reaching up to 98.72%. The close convergence of training and testing accuracies indicates that the model generalizes well and is not merely memorizing the training data.
 
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/2a329eb6-ca0c-4522-9ef5-e757f93bac20)
+
 _Figure 3 - Accuracy vs. Epoch: A line graph showing the training and test accuracy over the epochs._
 
-Loss Analysis
+### Loss Analysis
 The loss graph complements the accuracy analysis by showing a corresponding decrease in loss for both the training and testing data (Figure Y). The training loss reduced from 0.9322 to 0.0278, and the testing loss followed suit, starting from 0.5944 and ending at 0.0468. The convergence of training and test loss also suggests that the model is learning general features rather than overfitting to the training set.
 
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/78a3a542-1fef-481b-a5e2-741431b0a792)
+
 _Figure 4 - Loss vs. Epoch: A line graph illustrating the decline in training and test loss over the epochs._
 
-Precision and Recall
+### Precision and Recall
 In addition to accuracy, precision and recall are critical metrics, particularly in the medical imaging domain where the cost of false positives and negatives can be high. The model achieved a final test precision and recall of 98.74% and 98.72%, respectively. These values are highly desirable, showing that the model is not only accurate but also reliable in its positive predictions (precision) and sensitive in identifying positive cases (recall).
 
-Summary of Results
+### Summary of Results
 The following table summarizes the key performance metrics at the final epoch:
 
 | Metric  | 	Value |
 | ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| Train Accuracy | 99.36%  |
+| Test Accuracy  | 98.72%  |
+| Train Loss  | 0.0278  |
+| Test Loss | 0.0468  |
+| Precision  | 98.74%  |
+| Recall | 98.72%  |
 
-
-Train Accuracy	99.36%
-Test Accuracy	98.72%
-Train Loss	0.0278
-Test Loss	0.0468
-Precision	98.74%
-Recall	98.72%
 The high values across all metrics underscore the robustness of the ImageMaskNet in classifying breast ultrasound images.
 
-Interpretation
+### Interpretation
 The plots and metrics tell a story of a model that learns efficiently and generalizes well to unseen data. The rapid increase in accuracy and decrease in loss during the initial epochs suggest that the model is capable of quickly assimilating the patterns within the dataset. The plateauing of both accuracy and loss in later epochs indicates that the model may have reached its learning capacity given the current architecture and dataset.
 
 It's noteworthy that despite the high accuracy, the model did not reach a perfect score. This is a realistic outcome, reflecting the inherent uncertainty and variability in medical image interpretation.
