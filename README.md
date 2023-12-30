@@ -38,19 +38,30 @@ This section will detail each model's architecture, data preprocessing methods, 
 
 ## Model 1: Dual-Input Classifier (DIC-Net)
 
-### Model 1 Architecture: ImageMaskNet
-ImageMaskNet is a dual-branch convolutional neural network (CNN) designed for analyzing breast ultrasound images along with their corresponding masks. The architecture is bifurcated into two distinct pathways – the image branch and the mask branch – each tailored to process a specific type of input.
+### ImageMaskNet Architecture Rationalization
+
+#### Architectural Overview
+ImageMaskNet is a specialized convolutional neural network designed to process and classify breast ultrasound images. The architecture consists of two distinct branches: the image branch for processing RGB images and the mask branch for processing grayscale segmentation masks. Each branch is tailored to extract features from its respective input type, which are then combined to inform the classification decision. This section delineates the rationale behind the design choices in ImageMaskNet's architecture.
 
 ![ImageMaskNet_FlowDiagram](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/252f653f-bc4e-4bc5-8734-0136b84a6982)
 
 _Figure 2: Flow diagram of ImageMaskNet, illustrating the dual-pathway processing of RGB images and grayscale masks, feature concatenation, and classification into three categories._
 
-## Image Branch:
+### Image Branch:
 - Input: This branch takes the standard 3-channel (RGB) ultrasound images.
 - Layer 1: A convolutional layer with 32 filters, a kernel size of 3x3, and padding of 1. It is followed by a ReLU (Rectified Linear Unit) activation function.
 - Pooling 1: A 2x2 max pooling layer reduces the spatial dimensions by half.
 - Layer 2: Another convolutional layer with 64 filters, a 3x3 kernel, and padding of 1, followed by a ReLU activation function.
 - Pooling 2: A second 2x2 max pooling layer further reduces the feature map size.
+
+#### Convolutional Layers
+The image branch begins with convolutional layers, which are fundamental to CNNs for their ability to perform effective spatial feature extraction. The initial layer comprises 32 filters with a kernel size of 3x3 and padding of 1. This configuration enables the network to detect basic visual elements such as edges and textures. The subsequent layer, consisting of 64 filters, allows the network to construct more complex representations from these elementary features. The increase in filter count is a deliberate strategy to enhance the model's capacity to capture a wider variety of features at increasing levels of abstraction.
+
+#### Activation Functions
+The activation function employed after each convolutional layer is the Rectified Linear Unit (ReLU). ReLU is selected for its efficiency in accelerating the convergence of stochastic gradient descent compared to sigmoid or tanh functions. Moreover, ReLU helps mitigate the issue of vanishing gradients, enabling deeper networks to be trained more effectively.
+
+#### Pooling Layers
+Max pooling layers follow each convolutional layer, utilizing a 2x2 window to downsample the feature maps by a factor of two. This downsampling serves two primary functions: it reduces the computational load for subsequent layers and introduces a level of translational invariance to the learned features, thereby improving the robustness of the model.
 
 ## Mask Branch:
 - Input: This branch processes the single-channel (grayscale) mask images associated with the ultrasound data.
@@ -59,13 +70,23 @@ _Figure 2: Flow diagram of ImageMaskNet, illustrating the dual-pathway processin
 - Layer 2: A convolutional layer with 64 filters, 3x3 kernel, and padding of 1, followed by a ReLU activation function.
 - Pooling 2: Another 2x2 max pooling layer.
 
-## Combined Fully Connected Layers:
-The ImageMaskNet architecture culminates in its combined fully connected layers, where features from the image and mask branches are flattened, merged, and then channeled through a dense neural layer of 128 neurons with ReLU activation. This integration harnesses the detailed insights from both the ultrasound imagery and masks. The neural network's final layer, reflecting the three distinct classification categories—normal, benign, and malignant—outputs the model's predictive verdict. This design aims to capitalize on the rich, complementary information from dual data sources to refine the model's diagnostic acumen for breast cancer detection.
+#### Single-Channel Input
+The mask branch processes segmentation masks, which are images that mark specific regions in ultrasound scans. It's structured similarly to the image branch, using the same settings for the layers, which ensures the network treats both image and mask data consistently. This setup allows the model to learn important features from both the detailed images and the masks effectively.
+  
+### Combined Fully Connected Layers:
+
+#### Feature Integration
+Subsequent to feature extraction, the image and mask branches converge, and the extracted features are concatenated. This concatenated feature vector is then passed through fully connected layers. A dense layer of 128 neurons is employed, chosen to provide a balance between model expressiveness and computational efficiency. The use of a fully connected layer here is critical for integrating the features from both the image and mask pathways, which is hypothesized to enhance the model's predictive capability.
+
+#### Classification Output
+The architecture concludes with a softmax output layer that categorizes the combined features into three classes: normal, benign, and malignant. The softmax layer is the industry standard for multi-class classification problems due to its ability to output a normalized probability distribution over predicted classes.
 
 ## Data Preprocessing
 
-Combining Multiple Masks
+#### Combining Multiple Masks
 For some ultrasound images in our dataset, there were multiple mask files highlighting various areas of interest. To simplify the input to our neural network, we combined these multiple masks into a single mask image. This was done by overlaying the individual masks on top of each other, ensuring that no details were lost from the original set of masks.
+
+The design of ImageMaskNet is predicated on the synthesis of domain expertise in medical imaging and established practices in machine learning. The architecture is meticulously constructed to capitalize on the complementary information provided by both ultrasound images and segmentation masks, facilitating a comprehensive approach to the classification task at hand. The aforementioned architectural decisions are made with the intent to enhance diagnostic accuracy, ensuring the model's utility in a clinical setting.
 
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/91eb57e4-5a0c-441e-bcc5-8047db5b30eb) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/d5c7c0d7-ba50-4db2-8349-d2bb9ae553c7) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/31b90fe3-7b58-45cf-9d40-b3a18c1b28b3) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/63b4530d-99a3-4e29-a58b-4e098560af20)
 
@@ -133,30 +154,6 @@ The high values across all metrics underscore the robustness of the ImageMaskNet
 The plots and metrics tell a story of a model that learns efficiently and generalizes well to unseen data. The rapid increase in accuracy and decrease in loss during the initial epochs suggest that the model is capable of quickly assimilating the patterns within the dataset. The plateauing of both accuracy and loss in later epochs indicates that the model may have reached its learning capacity given the current architecture and dataset.
 
 It's noteworthy that despite the high accuracy, the model did not reach a perfect score. This is a realistic outcome, reflecting the inherent uncertainty and variability in medical image interpretation.
-
-
-
-Challenges and Solutions:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Address any challenges encountered during the model development and training process.
-
-Discuss the solutions or adjustments made to overcome these challenges.
 
 
 
