@@ -82,11 +82,21 @@ For the training subset, data augmentation was applied, introducing random horiz
 
 In the development of ImageMaskNet, the dataset was partitioned into two subsets: 80% was allocated for training the model, while the remaining 20% was reserved for testing its performance. This approach ensured that a substantial amount of data was used for the model to learn the underlying patterns, while still retaining a separate dataset to unbiasedly evaluate its generalization capabilities.
 
-The training phase was executed over twenty epochs, with each epoch encapsulating a complete iteration across the entire training dataset. The learning rate and weight decay parameters were fine-tuned to 0.001 and 1e-4, respectively, as determined by a thorough grid search to ascertain the optimal settings. These parameters play a crucial role in guiding the convergence of the model towards a robust solution that avoids overfitting.
+The training phase was executed over 10 epochs, with each epoch encapsulating a complete iteration across the entire training dataset. The learning rate and weight decay parameters were fine-tuned to 0.001 and 1e-4, respectively, as determined by a thorough grid search to ascertain the optimal settings. These parameters play a crucial role in guiding the convergence of the model towards a robust solution that avoids overfitting.
 
 Throughout the training process, epoch—loss and accuracy and accuracy were recorded. The loss metric gauges the model's prediction errors, with a lower loss indicative of improved model predictions. Conversely, accuracy measures the proportion of correctly predicted instances, providing a direct reflection of the model's predictive prowess. The overarching aim was to observe a consistent reduction in loss alongside an increment in accuracy, signifying the model's successful learning trajectory.
 
-Model Evaluation and Validation:
+## Model Evaluation and Validation:
+
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/171c38b6-1d65-4602-b8c0-a8fe144f1e07)
+
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/78a3a542-1fef-481b-a5e2-741431b0a792)
+
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/2a329eb6-ca0c-4522-9ef5-e757f93bac20)
+
+
+
+
 
 Challenges and Solutions:
 
