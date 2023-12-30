@@ -88,11 +88,11 @@ Throughout the training process, epoch—loss and accuracy and accuracy were rec
 
 ## Model Evaluation and Validation:
 
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/171c38b6-1d65-4602-b8c0-a8fe144f1e07)
 
 
-![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/78a3a542-1fef-481b-a5e2-741431b0a792)
 
-![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/2a329eb6-ca0c-4522-9ef5-e757f93bac20)
+
 
 ### Performance Overview
 The ImageMaskNet was subjected to a rigorous training and testing process over 10 epochs. The performance metrics, as depicted in the accompanying graphs, provide a detailed insight into the model's behavior over time.
@@ -100,15 +100,14 @@ The ImageMaskNet was subjected to a rigorous training and testing process over 1
 ### Accuracy Analysis
 The accuracy graph shows a clear trend of increasing accuracy on both the training and testing datasets as the epochs progress (Figure X). The model's training accuracy started at 65.9% and improved significantly to 99.36% by the 10th epoch. The testing accuracy followed a similar upward trend, starting at 71.79% and reaching up to 98.72%. The close convergence of training and testing accuracies indicates that the model generalizes well and is not merely memorizing the training data.
 
-![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/171c38b6-1d65-4602-b8c0-a8fe144f1e07)
-(Figure X - Accuracy vs. Epoch: A line graph showing the training and test accuracy over the epochs.)
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/2a329eb6-ca0c-4522-9ef5-e757f93bac20)
+_Figure 3 - Accuracy vs. Epoch: A line graph showing the training and test accuracy over the epochs._
 
 Loss Analysis
 The loss graph complements the accuracy analysis by showing a corresponding decrease in loss for both the training and testing data (Figure Y). The training loss reduced from 0.9322 to 0.0278, and the testing loss followed suit, starting from 0.5944 and ending at 0.0468. The convergence of training and test loss also suggests that the model is learning general features rather than overfitting to the training set.
 
-(Figure Y - Loss vs. Epoch: A line graph illustrating the decline in training and test
-
-loss over the epochs.)
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/78a3a542-1fef-481b-a5e2-741431b0a792)
+_Figure 4 - Loss vs. Epoch: A line graph illustrating the decline in training and test loss over the epochs._
 
 Precision and Recall
 In addition to accuracy, precision and recall are critical metrics, particularly in the medical imaging domain where the cost of false positives and negatives can be high. The model achieved a final test precision and recall of 98.74% and 98.72%, respectively. These values are highly desirable, showing that the model is not only accurate but also reliable in its positive predictions (precision) and sensitive in identifying positive cases (recall).
@@ -116,7 +115,12 @@ In addition to accuracy, precision and recall are critical metrics, particularly
 Summary of Results
 The following table summarizes the key performance metrics at the final epoch:
 
-Metric	Value
+| Metric  | 	Value |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
+
 Train Accuracy	99.36%
 Test Accuracy	98.72%
 Train Loss	0.0278
