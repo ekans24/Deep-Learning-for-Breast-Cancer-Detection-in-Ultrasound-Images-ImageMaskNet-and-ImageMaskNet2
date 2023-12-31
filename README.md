@@ -183,7 +183,15 @@ The following table summarizes the key performance metrics at the final epoch:
 |  |   |
 | |  |
 
+## Compare and Contrast 
 
+## Discussions
+
+## Limitations
+
+## Future Work
+
+## Conclusion
 
 ## Citation
 In acknowledgment of the dataset's origin and in compliance with academic standards, we cite the following source for the dataset used in our project:
