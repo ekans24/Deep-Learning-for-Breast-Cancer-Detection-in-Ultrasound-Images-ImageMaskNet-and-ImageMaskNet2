@@ -54,7 +54,7 @@ A custom dataset handler, CustomImageMaskDataset, was utilized to streamline the
 
 For the training subset, data augmentation was applied, introducing random horizontal flips to the images. This technique was intended to diversify the training data, aiding the model in developing robustness against variations and potentially enhancing its generalization capabilities.
 
-## Model 1: Dual-Input Classifier (DIC-Net)
+## Model 1: Dual-Input Classifier
 
 ### ImageMaskNet Architecture Rationalization
 
@@ -155,13 +155,13 @@ The plots and metrics tell a story of a model that learns efficiently and genera
 
 It's noteworthy that despite the high accuracy, the model did not reach a perfect score. This is a realistic outcome, reflecting the inherent uncertainty and variability in medical image interpretation.
 
-## Model 2: Mask-Informed Solo Classifier (MISC-Net)
+## Model 2: Mask-Informed Solo Classifier
 
-### Architecture Rationalization
-The MISC-Net model introduces a novel dual-pathway architecture designed to leverage the complementary nature of ultrasound imagery and associated segmentation masks. While the model is trained using both types of inputs, its unique capability allows for flexible application, capable of making predictions with only ultrasound images during testing. This section details the architectural components and their functionality within the ImageMaskNet.
+### ImageNoMaskNet Architecture Rationalization
+The ImageNoMaskNet  model introduces a novel dual-pathway architecture designed to leverage the complementary nature of ultrasound imagery and associated segmentation masks. While the model is trained using both types of inputs, its unique capability allows for flexible application, capable of making predictions with only ultrasound images during testing. This section details the architectural components and their functionality within the ImageNoMaskNet .
 
 ### Enhanced Image Branch
-The image branch of ImageMaskNet is built upon a sequence of convolutional layers, each followed by batch normalization and ReLU activation to ensure non-linearity and stable training dynamics. The depth of the network is increased in this iteration, with three convolutional layers of 32, 64, and 128 filters respectively, each of which is designed to capture progressively more complex features within the imagery. After each convolutional operation, max pooling is applied to reduce the spatial dimensionality, enhancing the network's ability to focus on salient features while reducing computational requirements.
+The image branch of ImageNoMaskNet is built upon a sequence of convolutional layers, each followed by batch normalization and ReLU activation to ensure non-linearity and stable training dynamics. The depth of the network is increased in this iteration, with three convolutional layers of 32, 64, and 128 filters respectively, each of which is designed to capture progressively more complex features within the imagery. After each convolutional operation, max pooling is applied to reduce the spatial dimensionality, enhancing the network's ability to focus on salient features while reducing computational requirements.
 
 - **Conv2d Layers:** These layers extract a hierarchy of features, from basic edges and textures to more complex patterns.
 - **BatchNorm2d:** Normalization steps stabilize the learning process, accelerate convergence, and have been shown to improve overall network performance.
@@ -181,10 +181,10 @@ Following feature extraction, the two branches can either converge for a combine
 - **Output Classes:** The network concludes with a softmax output layer, providing probabilistic interpretations for each class in a multi-class classification setting.
 
 ### Training and Testing Flexibility
-A key innovation of ImageMaskNet is its dual-mode operation. During training, the network learns from both image and mask inputs, while during testing, it can operate solely on the image input. This adaptability makes the model highly practical for clinical settings where segmentation masks might not be available.
+A key innovation of ImageNoMaskNet t is its dual-mode operation. During training, the network learns from both image and mask inputs, while during testing, it can operate solely on the image input. This adaptability makes the model highly practical for clinical settings where segmentation masks might not be available.
 
 ### Conclusion
-ImageMaskNet's architecture is a testament to modern neural network design, balancing depth and complexity with the need for practical application. By adopting batch normalization and dropout, it addresses the challenges of training stability and model generalization. The model's design embodies a forward-thinking approach to medical image analysis, prioritizing flexibility and robustness in equal measure.
+ImageNoMaskNet 's architecture is a testament to modern neural network design, balancing depth and complexity with the need for practical application. By adopting batch normalization and dropout, it addresses the challenges of training stability and model generalization. The model's design embodies a forward-thinking approach to medical image analysis, prioritizing flexibility and robustness in equal measure.
 
 ## Training
 
