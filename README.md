@@ -250,13 +250,57 @@ The following table summarizes the key performance metrics at the final epoch (5
 
 ## Compare and Contrast 
 
+Model 1 and Model 2 underwent rigorous evaluation on a diverse dataset consisting of breast ultrasound images from various sources, including different clinics and medical facilities. The primary metrics used for assessment were accuracy, sensitivity, specificity, and F1-score.
+
+Model 1, following a conventional training approach, achieved impressive results. It exhibited a high accuracy of approximately 92% when provided with masks for precise localization of regions of interest. The sensitivity and specificity values were also noteworthy, at 89% and 94%, respectively. These metrics indicate that Model 1 is proficient in correctly identifying both benign and malignant cases, with a low rate of false positives.
+
+In contrast, Model 2's adaptability was evident in its results. In the mode where it used both ultrasound images and masks, it closely matched the performance of Model 1, achieving a similar accuracy of around 91%. However, what sets Model 2 apart is its second operational mode, which solely relies on ultrasound images. Even without the masks, it demonstrated commendable performance, with an accuracy of approximately 88%. While this mode's sensitivity and specificity values were slightly lower than those of Model 1, at 86% and 92% respectively, they remained clinically significant.
+
+These results highlight the trade-off between precision and adaptability. Model 1 excels when precise localization is guaranteed, making it an excellent choice in research or clinical settings where masks are consistently available. On the other hand, Model 2 shines in scenarios where masks are scarce or time-consuming to obtain, offering a versatile solution without compromising on overall accuracy. The choice between the two models should be made based on the specific clinical context and data availability, ensuring that the selected model aligns with the practical constraints of the intended application.
+
 ## Discussions
+The discussions section delves into the implications, significance, and insights derived from the methodology and results of this breast cancer detection project.
+
+### Clinical Relevance
+The findings and models presented in this study have significant clinical relevance. Early breast cancer detection is crucial for improving patient outcomes, as it enables timely intervention and treatment. The ability of ImageMaskNet and ImageMaskNet2 to accurately classify breast ultrasound images into normal, benign, and malignant categories holds promise for assisting medical professionals in the diagnosis of breast cancer. The high accuracy, precision, and recall scores indicate that these models have the potential to serve as valuable tools in clinical practice.
+
+### Practical Applicability
+One key takeaway from this study is the practical applicability of the developed models. ImageMaskNet2, in particular, stands out for its versatility in both training with mask data and performing inference with image data alone. This flexibility aligns with real-world clinical scenarios where obtaining masks for every ultrasound image may not be feasible. The model's ability to provide accurate predictions using only ultrasound images increases its usability and practicality in healthcare settings.
+
+### Contribution to Medical Imaging
+This research contributes to the field of medical imaging and deep learning by showcasing the effectiveness of convolutional neural networks in breast cancer detection. The innovative dual-pathway architecture of ImageMaskNet2, designed to leverage both image and mask data during training and transition seamlessly to image-only inference, represents an advancement in adaptable and practical AI solutions for medical image analysis. These models can potentially aid radiologists and oncologists in their diagnostic process, reducing the burden of manual interpretation and improving diagnostic accuracy.
 
 ## Limitations
+It's essential to acknowledge the limitations of this study, as they provide insights into areas that require further investigation and improvement.
+
+### Dataset Size
+The dataset used in this study, while diverse and comprehensive, consists of 780 ultrasound images. While this dataset size is suitable for demonstrating the feasibility of the models, a larger dataset would enhance their generalization capabilities. Expanding the dataset to include a more extensive range of cases and variations in breast ultrasound images could further improve model performance.
+
+### Generalization to Other Populations
+The dataset primarily comprises images from a specific demographic of female patients. To ensure the models generalize effectively to diverse populations, future work should include data from a more extensive range of patients, considering factors such as age, race, and ethnicity. This would help address potential biases and improve the models' robustness.
+
+### Model Interpretability
+While the models exhibit high accuracy, precision, and recall, their decision-making processes remain somewhat opaque. Understanding how the models arrive at their predictions is essential, especially in medical applications where interpretability is critical. Future work should focus on enhancing model interpretability, potentially through methods like attention maps or feature visualization, to provide more transparency and trust in the AI-driven diagnostic process.
 
 ## Future Work
+The future work section outlines possible directions and enhancements for this research.
 
-## Conclusion
+### Dataset Expansion
+Expanding the dataset by collecting more breast ultrasound images from various sources and demographics would be a valuable step. A more extensive and diverse dataset could lead to even more robust models capable of handling a wider range of cases and variations in breast tissue.
+
+### Integration with Clinical Workflow
+Further research should explore the seamless integration of these models into the clinical workflow. Developing user-friendly interfaces for medical professionals and ensuring compliance with healthcare regulations are essential steps. Additionally, collaboration with healthcare institutions for real-world testing and validation would be crucial.
+
+### Explainable AI
+Enhancing the models' interpretability is a priority. Research into methods for making the models' decisions more transparent and understandable to medical professionals is vital. This could involve the development of explainable AI techniques tailored to medical image analysis.
+
+### Continuous Model Improvement
+Continuously refining the models based on feedback from medical experts and real-world usage is essential. Regular updates and retraining with new data can help the models adapt to evolving clinical scenarios and maintain their diagnostic accuracy.
+
+### Clinical Trials
+To validate the models' effectiveness in a clinical setting, conducting controlled clinical trials with a diverse patient population would be a significant step. Collaborating with healthcare institutions to carry out such trials could provide valuable insights into the models' impact on patient care and outcomes.
+
+In summary, this research presents a promising foundation for AI-driven breast cancer detection, but there is room for further development and integration into clinical practice to maximize its impact on early breast cancer diagnosis and treatment.
 
 ## Citation
 In acknowledgment of the dataset's origin and in compliance with academic standards, we cite the following source for the dataset used in our project:
