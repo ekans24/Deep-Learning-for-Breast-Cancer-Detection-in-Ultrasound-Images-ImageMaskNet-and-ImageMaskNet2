@@ -162,6 +162,7 @@ The ImageNoMaskNet  model introduces a novel dual-pathway architecture designed 
 
 ![ImageMaskNet_Training_Mode_FlowDiagram](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/ee303906-6678-4fd3-8c0c-0166f9fea0dd)
 
+_Figure 7: Flow diagram of ImageNoMaskNet, illustrating the solo classifier processing of RGB images and grayscale masks, feature concatenation, and classification into three categories._
 
 
 ### Enhanced Image Branch
@@ -193,6 +194,9 @@ ImageNoMaskNet 's architecture is a testament to modern neural network design, b
 ## Training
 
 ## Model Evaluation and Validation:
+
+Here is an some visuals from the predicted classes of the model. Three images from each class were selected.
+
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/def72c0c-5c7b-4945-89e9-a047259818f4)
 
 ### Performance Overview
