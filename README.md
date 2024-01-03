@@ -158,7 +158,7 @@ It's noteworthy that despite the high accuracy, the model did not reach a perfec
 ## Model 2: Mask-Informed Solo Classifier (MISC-Net)
 
 ### Architecture Rationalization
-The ImageMaskNet model introduces a novel dual-pathway architecture designed to leverage the complementary nature of ultrasound imagery and associated segmentation masks. While the model is trained using both types of inputs, its unique capability allows for flexible application, capable of making predictions with only ultrasound images during testing. This section details the architectural components and their functionality within the ImageMaskNet.
+The MISC-Net model introduces a novel dual-pathway architecture designed to leverage the complementary nature of ultrasound imagery and associated segmentation masks. While the model is trained using both types of inputs, its unique capability allows for flexible application, capable of making predictions with only ultrasound images during testing. This section details the architectural components and their functionality within the ImageMaskNet.
 
 ### Enhanced Image Branch
 The image branch of ImageMaskNet is built upon a sequence of convolutional layers, each followed by batch normalization and ReLU activation to ensure non-linearity and stable training dynamics. The depth of the network is increased in this iteration, with three convolutional layers of 32, 64, and 128 filters respectively, each of which is designed to capture progressively more complex features within the imagery. After each convolutional operation, max pooling is applied to reduce the spatial dimensionality, enhancing the network's ability to focus on salient features while reducing computational requirements.
