@@ -185,21 +185,28 @@ A key innovation of ImageMaskNet is its dual-mode operation. During training, th
 
 ### Conclusion
 ImageMaskNet's architecture is a testament to modern neural network design, balancing depth and complexity with the need for practical application. By adopting batch normalization and dropout, it addresses the challenges of training stability and model generalization. The model's design embodies a forward-thinking approach to medical image analysis, prioritizing flexibility and robustness in equal measure.
+
 ## Training
 
 ## Model Evaluation and Validation:
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/def72c0c-5c7b-4945-89e9-a047259818f4)
+
 
 ### Performance Overview
 
 ### Accuracy Analysis
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/e079d4b7-f2b3-41bb-92d6-0ebe6483ae42)
 
 ### Loss Analysis
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/2d61a61b-1d07-4bb3-a359-fe3b8e60441f)
 
 ### Precision and Recall
 
 ### Summary of Results
 The following table summarizes the key performance metrics at the final epoch:
 
+ final: Test Loss: 0.1135 - Test Accuracy: 0.9692
+ Loss: 0.2638 - Accuracy: 0.9077 - Precision: 0.9054 - Recall: 0.8931
 | Metric  | 	Value |
 | ------------- | ------------- |
 |  |  |
