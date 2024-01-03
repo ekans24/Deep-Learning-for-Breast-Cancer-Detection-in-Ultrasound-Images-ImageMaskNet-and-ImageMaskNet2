@@ -165,7 +165,7 @@ The image branch of ImageNoMaskNet is built upon a sequence of convolutional lay
 
 - **Conv2d Layers:** These layers extract a hierarchy of features, from basic edges and textures to more complex patterns.
 - **BatchNorm2d:** Normalization steps stabilize the learning process, accelerate convergence, and have been shown to improve overall network performance.
-- **ReLU: **The non-linear activation function introduces non-linearity to the learning process, enabling the network to learn complex mappings between input data and labels.
+- **ReLU:** The non-linear activation function introduces non-linearity to the learning process, enabling the network to learn complex mappings between input data and labels.
 - **MaxPool2d:** Pooling layers reduce dimensionality, condense feature representations, and imbue the network with a degree of translational invariance.
 
 ### Mask Branch with Regularization
@@ -183,7 +183,7 @@ Following feature extraction, the two branches can either converge for a combine
 ### Training and Testing Flexibility
 A key innovation of ImageNoMaskNet t is its dual-mode operation. During training, the network learns from both image and mask inputs, while during testing, it can operate solely on the image input. This adaptability makes the model highly practical for clinical settings where segmentation masks might not be available.
 
-### Conclusion
+### Final Notes on ImageNoMaskNet
 ImageNoMaskNet 's architecture is a testament to modern neural network design, balancing depth and complexity with the need for practical application. By adopting batch normalization and dropout, it addresses the challenges of training stability and model generalization. The model's design embodies a forward-thinking approach to medical image analysis, prioritizing flexibility and robustness in equal measure.
 
 ## Training
@@ -191,8 +191,8 @@ ImageNoMaskNet 's architecture is a testament to modern neural network design, b
 ## Model Evaluation and Validation:
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/def72c0c-5c7b-4945-89e9-a047259818f4)
 
-
 ### Performance Overview
+The ImageMaskNet was subjected to training and testing process over 50 epochs. This model needed more epochs than the previous one to reach a convergence and stable values. The performance metrics, as depicted in the accompanying graphs, provide a detailed insight into the model's behavior over time.
 
 ### Accuracy Analysis
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/e079d4b7-f2b3-41bb-92d6-0ebe6483ae42)
