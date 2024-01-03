@@ -195,6 +195,16 @@ The architecture of ImageMaskNet2 stands as a tribute to the advancement in neur
 
 ## Training
 
+The training of ImageMaskNet2 was a carefully executed process, essential for its development as a tool for classifying breast ultrasound images. The dataset used for training was split, allocating 80% for the model's learning and reserving the remaining 20% for testing, ensuring a balance between learning from a large dataset and validating the model's performance on unseen data.
+
+Over 50 epochs, ImageMaskNet2 underwent an intensive training phase. A learning rate of 0.0001 and a weight decay of 1e-5 were chosen to optimize the training process, striking a balance between efficient learning and the prevention of overfitting. This setup was crucial for the model's ability to learn effectively without compromising its ability to generalize to new data.
+
+A unique aspect of ImageMaskNet2's training was its dual-mode operation. In the initial phase, the model was trained on both images and their corresponding masks, leveraging the complete dataset for a comprehensive learning experience. In the later stages, the focus shifted to training solely with images, preparing the model for real-world scenarios where mask data might not be readily available.
+
+Throughout the training, metrics such as loss and accuracy were closely monitored. The loss, indicating the model's prediction errors, was expected to decrease, signifying improvement. Meanwhile, accuracy metrics provided insights into how well the model was classifying the images correctly. The training process was complemented by visualizations of these metrics over the epochs, offering a clear view of the model's learning progress and its readiness for deployment in practical applications.
+
+In conclusion, the training of ImageMaskNet2 was a pivotal step in its development, ensuring that it not only learned from a substantial amount of data but also acquired the capability to perform accurately and reliably in classifying medical images.
+
 ## Model Evaluation and Validation:
 
 Here is an some visuals from the predicted classes of the model. Three images from each class were selected.
@@ -207,28 +217,36 @@ _Figure 8: illustrates a selection of ultrasound images across the three classes
 The ImageMaskNet was subjected to training and testing process over 50 epochs. This model needed more epochs than the previous one to reach a convergence and stable values. The performance metrics, as depicted in the accompanying graphs, provide a detailed insight into the model's behavior over time.
 
 ### Accuracy Analysis
+
+The accuracy plot for ImageMaskNet2 shows a typical learning curve with the training accuracy rapidly increasing in the initial epochs, suggesting quick learning, and then plateauing, indicating convergence. The test accuracy, although lower than the training accuracy, reveals the model's capacity to generalize, as it improves steadily over the epochs. The consistent but narrow gap between the training and test accuracies suggests a good fit without significant overfitting.
+
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/e079d4b7-f2b3-41bb-92d6-0ebe6483ae42)
 
+_Figure 9: Training and test accuracy of ImageMaskNet2 across 50 epochs, showcasing the model's learning efficiency and generalization capability. _
+
 ### Loss Analysis
+
+The loss plot for ImageMaskNet2 reveals an expected downward trend in training loss, which indicates that the model is effectively learning and improving its predictions over time. The test loss decreases alongside the training loss but shows spikes at certain epochs, which could be due to the model's adjustments to the regularization or learning rate changes. These spikes are followed by a return to the downward trend, suggesting that the model recovers and continues to enhance its generalization to the test data as training progresses.
+
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/2d61a61b-1d07-4bb3-a359-fe3b8e60441f)
 
+_Figure 10: Evolution of training and test loss for ImageMaskNet2 over 50 epochs, depicting the model's learning progress and its ability to generalize to new data. ._
+
 ### Precision and Recall
+The precision and recall scores for classifying malignant, benign, and normal cases using ImageMaskNet2 are impressive, with a precision of 0.9054 and a recall of 0.8931. These scores indicate the model's strong ability to accurately classify different categories of breast lesions, distinguishing between malignant, benign, and normal cases with high precision and effectively capturing a large portion of these cases. This robust performance highlights the model's effectiveness in assisting medical professionals in diagnosing breast cancers, which is vital for providing appropriate medical care and treatment.
 
 ### Summary of Results
-The following table summarizes the key performance metrics at the final epoch:
 
- final: Test Loss: 0.1135 - Test Accuracy: 0.9692
-
- Loss: 0.2638 - Accuracy: 0.9077 - Precision: 0.9054 - Recall: 0.8931
+The following table summarizes the key performance metrics at the final epoch (50):
 
 | Metric  | 	Value |
 | ------------- | ------------- |
-|  |  |
-|   |  |
-|   |   |
-|  |   |
-|  |   |
-| |  |
+| Train Accuracy | 90.54%  |
+| Test Accuracy  | 96.92%  |
+| Train Loss  | 0.2638  |
+| Test Loss | 0.1135  |
+| Precision  | 90.54%  |
+| Recall | 89.31%  |
 
 ## Compare and Contrast 
 
