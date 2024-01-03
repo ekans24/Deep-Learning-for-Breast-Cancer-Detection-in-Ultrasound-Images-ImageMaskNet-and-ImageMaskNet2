@@ -163,21 +163,22 @@ The ImageMaskNet model introduces a novel dual-pathway architecture designed to 
 ### Enhanced Image Branch
 The image branch of ImageMaskNet is built upon a sequence of convolutional layers, each followed by batch normalization and ReLU activation to ensure non-linearity and stable training dynamics. The depth of the network is increased in this iteration, with three convolutional layers of 32, 64, and 128 filters respectively, each of which is designed to capture progressively more complex features within the imagery. After each convolutional operation, max pooling is applied to reduce the spatial dimensionality, enhancing the network's ability to focus on salient features while reducing computational requirements.
 
-Conv2d Layers: These layers extract a hierarchy of features, from basic edges and textures to more complex patterns.
-BatchNorm2d: Normalization steps stabilize the learning process, accelerate convergence, and have been shown to improve overall network performance.
-ReLU: The non-linear activation function introduces non-linearity to the learning process, enabling the network to learn complex mappings between input data and labels.
-MaxPool2d: Pooling layers reduce dimensionality, condense feature representations, and imbue the network with a degree of translational invariance.
+- **Conv2d Layers:** These layers extract a hierarchy of features, from basic edges and textures to more complex patterns.
+- **BatchNorm2d:** Normalization steps stabilize the learning process, accelerate convergence, and have been shown to improve overall network performance.
+- **ReLU: **The non-linear activation function introduces non-linearity to the learning process, enabling the network to learn complex mappings between input data and labels.
+- **MaxPool2d:** Pooling layers reduce dimensionality, condense feature representations, and imbue the network with a degree of translational invariance.
 
 ### Mask Branch with Regularization
 Mirroring the image branch's structure, the mask branch processes single-channel grayscale images. The incorporation of dropout regularization after the final convolutional layer is a critical enhancement, aimed at improving the model's generalization to unseen data by mitigating the risk of overfitting.
 
-Dropout: A dropout rate of 50% is employed to prevent over-reliance on any particular neuron within the network, encouraging a more robust feature representation.
+- **Dropout:** A dropout rate of 50% is employed to prevent over-reliance on any particular neuron within the network, encouraging a more robust feature representation.
 
 ### Combined Fully Connected Layers
 Following feature extraction, the two branches can either converge for a combined analysis or allow the image branch to proceed independently, providing a versatile approach to handling different testing scenarios. The fully connected layers integrate the learned representations, with a significant number of neurons (256) ensuring a rich feature combination before the final classification.
 
-Linear: The linear layers map the integrated features to the space of the output classes.
-Output Classes: The network concludes with a softmax output layer, providing probabilistic interpretations for each class in a multi-class classification setting.
+- **Linear:** The linear layers map the integrated features to the space of the output classes.
+
+- **Output Classes: **The network concludes with a softmax output layer, providing probabilistic interpretations for each class in a multi-class classification setting.
 
 ### Training and Testing Flexibility
 A key innovation of ImageMaskNet is its dual-mode operation. During training, the network learns from both image and mask inputs, while during testing, it can operate solely on the image input. This adaptability makes the model highly practical for clinical settings where segmentation masks might not be available.
