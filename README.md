@@ -113,7 +113,7 @@ An integral part of our model evaluation is the visual validation of predictions
 
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/171c38b6-1d65-4602-b8c0-a8fe144f1e07)
 
-_Figure 4: illustrates a selection of ultrasound images across the three classes—benign, malignant, and normal—with both the ground truth and the model's predictions labeled._
+_Figure 4: illustrates a selection of ultrasound images across the three classes—benign, malignant, and normal—with both the ground truth and the ImageMaskNet's predictions labeled._
 
 
 ### Performance Overview
@@ -164,7 +164,6 @@ ImageMaskNet2 embodies a sophisticated dual-pathway architecture, uniquely craft
 
 _Figure 7: ImageMaskNet's architecture, showcasing dual-input convolutional branches for image and mask data that merge for classification into 'normal', 'benign', or 'malignant' categories, with an image-only inference path when masks are not provided._
 
-
 ### Enhanced Image Branch
 The image branch is the backbone of ImageMaskNet2, featuring a series of convolutional layers with increasing depth—32, 64, and 128 filters. This hierarchical design is deliberate, ensuring the capture of complex features from simple to intricate. Each convolutional layer is fortified with batch normalization and ReLU activation, establishing a stable and efficient learning trajectory. Max pooling layers interspersed between convolutional layers serve a dual purpose: they compact the feature representation and endow the network with translational invariance, essential for focusing on pertinent features within the ultrasound images.
 
@@ -201,6 +200,8 @@ The architecture of ImageMaskNet2 stands as a tribute to the advancement in neur
 Here is an some visuals from the predicted classes of the model. Three images from each class were selected.
 
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/def72c0c-5c7b-4945-89e9-a047259818f4)
+
+_Figure 8: illustrates a selection of ultrasound images across the three classes—benign, malignant, and normal—with both the ground truth and the ImageMaskNet2's predictions labeled._
 
 ### Performance Overview
 The ImageMaskNet was subjected to training and testing process over 50 epochs. This model needed more epochs than the previous one to reach a convergence and stable values. The performance metrics, as depicted in the accompanying graphs, provide a detailed insight into the model's behavior over time.
