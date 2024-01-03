@@ -54,7 +54,7 @@ A custom dataset handler, CustomImageMaskDataset, was utilized to streamline the
 
 For the training subset, data augmentation was applied, introducing random horizontal flips to the images. This technique was intended to diversify the training data, aiding the model in developing robustness against variations and potentially enhancing its generalization capabilities.
 
-## Model 1: Dual-Input Classifier
+## Model 1
 
 ### ImageMaskNet Architecture Rationalization
 
@@ -155,18 +155,18 @@ The plots and metrics tell a story of a model that learns efficiently and genera
 
 It's noteworthy that despite the high accuracy, the model did not reach a perfect score. This is a realistic outcome, reflecting the inherent uncertainty and variability in medical image interpretation.
 
-## Model 2: Mask-Informed Solo Classifier
+## Model 2
 
-### ImageNoMaskNet Architecture Rationalization
-The ImageNoMaskNet  model introduces a novel dual-pathway architecture designed to leverage the complementary nature of ultrasound imagery and associated segmentation masks. While the model is trained using both types of inputs, its unique capability allows for flexible application, capable of making predictions with only ultrasound images during testing. This section details the architectural components and their functionality within the ImageNoMaskNet .
+### ImageMaskNet2 Architecture Rationalization
+ImageMaskNet2 embodies a sophisticated dual-pathway architecture, uniquely crafted to harness the complementary features of ultrasound imagery and associated segmentation masks during training. This innovative design is pivotal for enriching the model's feature extraction capabilities. However, its true novelty lies in its operational versatility during inference, where it seamlessly transitions to an image-only mode, maintaining robust performance even in the absence of mask data.
 
 ![ImageMaskNet_Training_Mode_FlowDiagram](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/ee303906-6678-4fd3-8c0c-0166f9fea0dd)
 
-_Figure 7: Flow diagram of ImageNoMaskNet, illustrating the solo classifier processing of RGB images and grayscale masks, feature concatenation, and classification into three categories._
+_Figure 7: ImageMaskNet's architecture, showcasing dual-input convolutional branches for image and mask data that merge for classification into 'normal', 'benign', or 'malignant' categories, with an image-only inference path when masks are not provided._
 
 
 ### Enhanced Image Branch
-The image branch of ImageNoMaskNet is built upon a sequence of convolutional layers, each followed by batch normalization and ReLU activation to ensure non-linearity and stable training dynamics. The depth of the network is increased in this iteration, with three convolutional layers of 32, 64, and 128 filters respectively, each of which is designed to capture progressively more complex features within the imagery. After each convolutional operation, max pooling is applied to reduce the spatial dimensionality, enhancing the network's ability to focus on salient features while reducing computational requirements.
+The image branch is the backbone of ImageMaskNet2, featuring a series of convolutional layers with increasing depth—32, 64, and 128 filters. This hierarchical design is deliberate, ensuring the capture of complex features from simple to intricate. Each convolutional layer is fortified with batch normalization and ReLU activation, establishing a stable and efficient learning trajectory. Max pooling layers interspersed between convolutional layers serve a dual purpose: they compact the feature representation and endow the network with translational invariance, essential for focusing on pertinent features within the ultrasound images.
 
 - **Conv2d Layers:** These layers extract a hierarchy of features, from basic edges and textures to more complex patterns.
 - **BatchNorm2d:** Normalization steps stabilize the learning process, accelerate convergence, and have been shown to improve overall network performance.
@@ -174,22 +174,25 @@ The image branch of ImageNoMaskNet is built upon a sequence of convolutional lay
 - **MaxPool2d:** Pooling layers reduce dimensionality, condense feature representations, and imbue the network with a degree of translational invariance.
 
 ### Mask Branch with Regularization
-Mirroring the image branch's structure, the mask branch processes single-channel grayscale images. The incorporation of dropout regularization after the final convolutional layer is a critical enhancement, aimed at improving the model's generalization to unseen data by mitigating the risk of overfitting.
+The mask branch is ImageMaskNet2's strategic component, processing grayscale masks to accentuate critical regions within the images. Structurally parallel to the image branch, it integrates a dropout layer post the convolutional sequence, strategically set at a 50% rate to deter overfitting. This branch's output does not directly contribute to the inference output but is indispensable during training, offering a regularization effect that enhances the generalization capacity of the network.
 
 - **Dropout:** A dropout rate of 50% is employed to prevent over-reliance on any particular neuron within the network, encouraging a more robust feature representation.
 
 ### Combined Fully Connected Layers
-Following feature extraction, the two branches can either converge for a combined analysis or allow the image branch to proceed independently, providing a versatile approach to handling different testing scenarios. The fully connected layers integrate the learned representations, with a significant number of neurons (256) ensuring a rich feature combination before the final classification.
+Post feature extraction, ImageMaskNet2 diverges into two potential paths: a combined mode and an image-only mode. In combined mode, features from both branches merge, traversing through dense layers that synthesize the information into a cohesive feature vector for classification. The image-only mode allows for autonomous operation of the image branch, directly mapping its features to the output classes. This bifurcation is pivotal for the model's adaptability, ensuring operational efficacy in diverse clinical scenarios.
 
 - **Linear:** The linear layers map the integrated features to the space of the output classes.
 
 - **Output Classes:** The network concludes with a softmax output layer, providing probabilistic interpretations for each class in a multi-class classification setting.
 
-### Training and Testing Flexibility
-A key innovation of ImageNoMaskNet t is its dual-mode operation. During training, the network learns from both image and mask inputs, while during testing, it can operate solely on the image input. This adaptability makes the model highly practical for clinical settings where segmentation masks might not be available.
+### Output Classification
+Concluding its architecture, ImageMaskNet2 employs a softmax layer that articulates the probability distribution across the potential classes—normal, benign, and malignant. This layer is the culmination of the model's intricate processing, offering a probabilistic understanding of the classification decision.
 
-### Final Notes on ImageNoMaskNet
-ImageNoMaskNet 's architecture is a testament to modern neural network design, balancing depth and complexity with the need for practical application. By adopting batch normalization and dropout, it addresses the challenges of training stability and model generalization. The model's design embodies a forward-thinking approach to medical image analysis, prioritizing flexibility and robustness in equal measure.
+### Training and Testing Flexibility
+ImageMaskNet2's dual-mode functionality is emblematic of its design ingenuity. It is trained dually yet possesses the agility to infer solely from image data, a feature that greatly enhances its clinical applicability. The network is trained to integrate and amplify the signal from the mask data, but when deployed, it is capable of delivering diagnostic predictions with just the image data, a common scenario in clinical environments.
+
+### Final Notes on ImageMaskNet2
+The architecture of ImageMaskNet2 stands as a tribute to the advancement in neural network architectures, adeptly balancing computational depth with practical applicability. It exemplifies a progressive approach to medical image analysis, underlined by a design that is both flexible and robust, ensuring that the network remains versatile across training and deployment phases.
 
 ## Training
 
