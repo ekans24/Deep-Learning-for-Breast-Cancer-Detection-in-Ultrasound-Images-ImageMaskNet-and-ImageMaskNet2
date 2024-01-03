@@ -8,12 +8,14 @@ from torch.utils.data import DataLoader, Dataset
 from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.metrics import precision_score, recall_score
+
 
 # Define constants and hyperparameters
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 LR = 0.0001
 WEIGHT_DECAY = 1e-5
-NUM_EPOCHS = 5
+NUM_EPOCHS = 50
 BATCH_SIZE = 16
 IMAGE_SIZE = 256
 NUM_CLASSES = 3
@@ -90,8 +92,6 @@ class ImageMaskNet(nn.Module):
             x_image = x_image.view(x_image.size(0), -1)
             output = self.fc_image_only(x_image)
         return output
-
-
 
 class CustomImageMaskDataset(Dataset):
     def __init__(self, image_root_dir, mask_root_dir, image_transform=None, use_masks=True):
@@ -178,23 +178,29 @@ test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)
 
-# Update the train_model function to include the scheduler
-def train_model(model, train_loader, criterion, optimizer, num_epochs=NUM_EPOCHS):
+def train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=NUM_EPOCHS):
     model.train()
+    train_losses = []
+    train_accuracies = []
+    test_losses = []
+    test_accuracies = []
     half_epoch = num_epochs // 2
+
     for epoch in range(num_epochs):
         running_loss = 0.0
         correct_predictions = 0
         total_predictions = 0
+        all_labels = []
+        all_predictions = []
 
         for i, (images, masks, labels, _) in enumerate(train_loader, 0):
             images, masks, labels = images.to(device), masks.to(device), labels.to(device)
             optimizer.zero_grad()
-            
+
             if epoch < half_epoch:
                 outputs = model(images, masks)
             else:
-                outputs = model(images)  # Use only images in the second phase
+                outputs = model(images)
 
             loss = criterion(outputs, labels)
             loss.backward()
@@ -204,32 +210,126 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=NUM_EPOCHS
             _, predicted = torch.max(outputs, 1)
             correct_predictions += (predicted == labels).sum().item()
             total_predictions += labels.size(0)
+            all_labels.extend(labels.cpu().numpy())
+            all_predictions.extend(predicted.cpu().numpy())
 
         epoch_loss = running_loss / len(train_loader)
         epoch_acc = correct_predictions / total_predictions
-        print(f"Epoch {epoch + 1}/{num_epochs} - Loss: {epoch_loss:.4f} - Accuracy: {epoch_acc:.4f}")
+        train_losses.append(epoch_loss)
+        train_accuracies.append(epoch_acc)
+
+        # Test evaluation
+        model.eval()
+        epoch_test_loss, epoch_test_acc = test_model(model, test_loader, criterion)
+        test_losses.append(epoch_test_loss)
+        test_accuracies.append(epoch_test_acc)
+        model.train()
+
+        # Calculate precision and recall
+        precision = precision_score(all_labels, all_predictions, average='macro', zero_division=1)
+        recall = recall_score(all_labels, all_predictions, average='macro')
+        print(f"Epoch {epoch + 1}/{num_epochs} - Loss: {epoch_loss:.4f} - Accuracy: {epoch_acc:.4f} - Precision: {precision:.4f} - Recall: {recall:.4f}")
 
     print("Finished Training")
-    return model
-
-# Train the model with the scheduler
-model = train_model(model, train_loader, criterion, optimizer)
+    return model, train_losses, train_accuracies, test_losses, test_accuracies
 
 
-def test_model(model, test_loader):
+def test_model(model, test_loader, criterion):
     model.eval()
-    correct_predictions = 0
-    total_predictions = 0
+    test_losses = []
+    test_accuracies = []
 
     with torch.no_grad():
+        running_loss = 0.0
+        correct_predictions = 0
+        total_predictions = 0
+
         for images, _, labels, _ in test_loader:  # Ignore masks
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
+            loss = criterion(outputs, labels)
+            running_loss += loss.item()
             _, predicted = torch.max(outputs, 1)
             correct_predictions += (predicted == labels).sum().item()
             total_predictions += labels.size(0)
 
-    print(f"Test Accuracy: {correct_predictions / total_predictions:.4f}")
+        epoch_loss = running_loss / len(test_loader)
+        epoch_acc = correct_predictions / total_predictions
+        test_losses.append(epoch_loss)
+        test_accuracies.append(epoch_acc)
+
+    print(f"Test Loss: {epoch_loss:.4f} - Test Accuracy: {epoch_acc:.4f}")
+    return test_losses, test_accuracies
+
+# Train the model
+trained_model, train_losses, train_accuracies, test_losses, test_accuracies = train_model(model, train_loader, test_loader, criterion, optimizer)
+
+# Accuracy plot
+plt.figure()
+plt.plot(train_accuracies, label='Train Accuracy')
+plt.plot(test_accuracies, label='Test Accuracy')
+plt.title('Accuracy vs Epoch')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.show()
+
+# Loss plot
+plt.figure()
+plt.plot(train_losses, label='Train Loss')
+plt.plot(test_losses, label='Test Loss')
+plt.title('Loss vs Epoch')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
 
 # Test the model
-test_model(model, test_loader)
+test_losses, test_accuracies = test_model(trained_model, test_loader, criterion)
+
+# Updated Visualization function
+def visualize_original_images(model, class_names, data_loader, num_images_per_class=3, use_masks=True):
+    was_training = model.training
+    model.eval()
+    fig = plt.figure(figsize=(15, 10))
+
+    class_images_count = {classname: 0 for classname in class_names}
+
+    with torch.no_grad():
+        for images, masks, labels, paths in data_loader:
+            images, labels = images.to(device), labels.to(device)
+            if use_masks:
+                masks = masks.to(device)
+                outputs = model(images, masks)
+            else:
+                outputs = model(images)
+
+            _, preds = torch.max(outputs, 1)
+
+            for j in range(len(labels)):
+                class_label = class_names[labels[j]]
+                predicted_label = class_names[preds[j]]
+
+                if class_images_count[class_label] < num_images_per_class:
+                    class_images_count[class_label] += 1
+
+                    ax = plt.subplot(num_images_per_class, len(class_names), sum(class_images_count.values()))
+                    ax.axis('off')
+                    ax.set_title(f'True: {class_label}, Predicted: {predicted_label}')
+
+                    # Load and display the original image from the path
+                    original_image = Image.open(paths[j])
+                    plt.imshow(original_image)
+
+                if all(count == num_images_per_class for count in class_images_count.values()):
+                    model.train(mode=was_training)
+                    plt.show()
+                    return
+        model.train(mode=was_training)
+        plt.show()
+
+# Define class names
+class_names = ['benign', 'malignant', 'normal']
+
+# Remember to set use_masks accordingly when calling this function:
+visualize_original_images(trained_model, class_names, test_loader, use_masks=False)

@@ -14,7 +14,7 @@ from sklearn.metrics import precision_score, recall_score
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 LR = 0.001
 WEIGHT_DECAY = 1e-4
-NUM_EPOCHS = 10
+NUM_EPOCHS = 1
 BATCH_SIZE = 8
 IMAGE_SIZE = 256
 NUM_CLASSES = 3
