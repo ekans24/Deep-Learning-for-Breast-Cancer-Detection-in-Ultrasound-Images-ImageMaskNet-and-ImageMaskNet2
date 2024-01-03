@@ -222,7 +222,7 @@ The accuracy plot for ImageMaskNet2 shows a typical learning curve with the trai
 
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/e079d4b7-f2b3-41bb-92d6-0ebe6483ae42)
 
-_Figure 9: Training and test accuracy of ImageMaskNet2 across 50 epochs, showcasing the model's learning efficiency and generalization capability. _
+_Figure 9: Training and test accuracy of ImageMaskNet2 across 50 epochs, showcasing the model's learning efficiency and generalization capability._
 
 ### Loss Analysis
 
@@ -230,7 +230,7 @@ The loss plot for ImageMaskNet2 reveals an expected downward trend in training l
 
 ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/2d61a61b-1d07-4bb3-a359-fe3b8e60441f)
 
-_Figure 10: Evolution of training and test loss for ImageMaskNet2 over 50 epochs, depicting the model's learning progress and its ability to generalize to new data. ._
+_Figure 10: Evolution of training and test loss for ImageMaskNet2 over 50 epochs, depicting the model's learning progress and its ability to generalize to new data._
 
 ### Precision and Recall
 The precision and recall scores for classifying malignant, benign, and normal cases using ImageMaskNet2 are impressive, with a precision of 0.9054 and a recall of 0.8931. These scores indicate the model's strong ability to accurately classify different categories of breast lesions, distinguishing between malignant, benign, and normal cases with high precision and effectively capturing a large portion of these cases. This robust performance highlights the model's effectiveness in assisting medical professionals in diagnosing breast cancers, which is vital for providing appropriate medical care and treatment.
