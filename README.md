@@ -36,6 +36,24 @@ The rationale behind this dual-model exploration is to evaluate the performance 
 
 This section will detail each model's architecture, data preprocessing methods, training processes, and testing strategies, providing a comprehensive understanding of the methodologies employed in this research. Through this analysis, we aim to contribute valuable knowledge to the field of medical imaging and cancer diagnosis, emphasizing the importance of adaptable and realistic AI solutions in healthcare.
 
+## Data Preprocessing
+
+#### Combining Multiple Masks
+For some ultrasound images in our dataset, there were multiple mask files highlighting various areas of interest. To simplify the input to our neural network, we combined these multiple masks into a single mask image. This was done by overlaying the individual masks on top of each other, ensuring that no details were lost from the original set of masks.
+
+The design of ImageMaskNet is predicated on the synthesis of domain expertise in medical imaging and established practices in machine learning. The architecture is meticulously constructed to capitalize on the complementary information provided by both ultrasound images and segmentation masks, facilitating a comprehensive approach to the classification task at hand. The aforementioned architectural decisions are made with the intent to enhance diagnostic accuracy, ensuring the model's utility in a clinical setting.
+
+![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/91eb57e4-5a0c-441e-bcc5-8047db5b30eb) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/d5c7c0d7-ba50-4db2-8349-d2bb9ae553c7) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/31b90fe3-7b58-45cf-9d40-b3a18c1b28b3) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/63b4530d-99a3-4e29-a58b-4e098560af20)
+
+_Figure 3: The sequence of images demonstrates the process of combining multiple masks into one. The first image is the original ultrasound, followed by separate mask images, and ending with a single combined mask. This final, combined mask image is used for training the neural network, ensuring it has a complete view of all areas of interest._
+
+
+The preprocessing of the Breast Ultrasound Images Dataset involved a series of transformational steps to render the images suitable for analysis by the ImageMaskNet model. Initially, each image within the dataset, irrespective of its classification as benign, malignant, or normal, was resized to a consistent dimension of 256x256 pixels to standardize the input size for the neural network.
+
+A custom dataset handler, CustomImageMaskDataset, was utilized to streamline the loading and processing of the images alongside their associated masks. The image transformation pipeline incorporated a resizing step followed by a conversion to tensor format, facilitating compatibility with the PyTorch framework used for model training.
+
+For the training subset, data augmentation was applied, introducing random horizontal flips to the images. This technique was intended to diversify the training data, aiding the model in developing robustness against variations and potentially enhancing its generalization capabilities.
+
 ## Model 1: Dual-Input Classifier (DIC-Net)
 
 ### ImageMaskNet Architecture Rationalization
@@ -47,7 +65,7 @@ ImageMaskNet is a specialized convolutional neural network designed to process a
 
 _Figure 2: Flow diagram of ImageMaskNet, illustrating the dual-pathway processing of RGB images and grayscale masks, feature concatenation, and classification into three categories._
 
-### Image Branch:
+#### Image Branch:
 - Input: This branch takes the standard 3-channel (RGB) ultrasound images.
 - Layer 1: A convolutional layer with 32 filters, a kernel size of 3x3, and padding of 1. It is followed by a ReLU (Rectified Linear Unit) activation function.
 - Pooling 1: A 2x2 max pooling layer reduces the spatial dimensions by half.
@@ -80,24 +98,6 @@ Subsequent to feature extraction, the image and mask branches converge, and the 
 
 #### Classification Output
 The architecture concludes with a softmax output layer that categorizes the combined features into three classes: normal, benign, and malignant. The softmax layer is the industry standard for multi-class classification problems due to its ability to output a normalized probability distribution over predicted classes.
-
-## Data Preprocessing
-
-#### Combining Multiple Masks
-For some ultrasound images in our dataset, there were multiple mask files highlighting various areas of interest. To simplify the input to our neural network, we combined these multiple masks into a single mask image. This was done by overlaying the individual masks on top of each other, ensuring that no details were lost from the original set of masks.
-
-The design of ImageMaskNet is predicated on the synthesis of domain expertise in medical imaging and established practices in machine learning. The architecture is meticulously constructed to capitalize on the complementary information provided by both ultrasound images and segmentation masks, facilitating a comprehensive approach to the classification task at hand. The aforementioned architectural decisions are made with the intent to enhance diagnostic accuracy, ensuring the model's utility in a clinical setting.
-
-![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/91eb57e4-5a0c-441e-bcc5-8047db5b30eb) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/d5c7c0d7-ba50-4db2-8349-d2bb9ae553c7) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/31b90fe3-7b58-45cf-9d40-b3a18c1b28b3) ![image](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/63b4530d-99a3-4e29-a58b-4e098560af20)
-
-_Figure 3: The sequence of images demonstrates the process of combining multiple masks into one. The first image is the original ultrasound, followed by separate mask images, and ending with a single combined mask. This final, combined mask image is used for training the neural network, ensuring it has a complete view of all areas of interest._
-
-
-The preprocessing of the Breast Ultrasound Images Dataset involved a series of transformational steps to render the images suitable for analysis by the ImageMaskNet model. Initially, each image within the dataset, irrespective of its classification as benign, malignant, or normal, was resized to a consistent dimension of 256x256 pixels to standardize the input size for the neural network.
-
-A custom dataset handler, CustomImageMaskDataset, was utilized to streamline the loading and processing of the images alongside their associated masks. The image transformation pipeline incorporated a resizing step followed by a conversion to tensor format, facilitating compatibility with the PyTorch framework used for model training.
-
-For the training subset, data augmentation was applied, introducing random horizontal flips to the images. This technique was intended to diversify the training data, aiding the model in developing robustness against variations and potentially enhancing its generalization capabilities.
 
 ## Training
 
@@ -158,7 +158,32 @@ It's noteworthy that despite the high accuracy, the model did not reach a perfec
 ## Model 2: Mask-Informed Solo Classifier (MISC-Net)
 
 ### Architecture Rationalization
+The ImageMaskNet model introduces a novel dual-pathway architecture designed to leverage the complementary nature of ultrasound imagery and associated segmentation masks. While the model is trained using both types of inputs, its unique capability allows for flexible application, capable of making predictions with only ultrasound images during testing. This section details the architectural components and their functionality within the ImageMaskNet.
 
+### Enhanced Image Branch
+The image branch of ImageMaskNet is built upon a sequence of convolutional layers, each followed by batch normalization and ReLU activation to ensure non-linearity and stable training dynamics. The depth of the network is increased in this iteration, with three convolutional layers of 32, 64, and 128 filters respectively, each of which is designed to capture progressively more complex features within the imagery. After each convolutional operation, max pooling is applied to reduce the spatial dimensionality, enhancing the network's ability to focus on salient features while reducing computational requirements.
+
+Conv2d Layers: These layers extract a hierarchy of features, from basic edges and textures to more complex patterns.
+BatchNorm2d: Normalization steps stabilize the learning process, accelerate convergence, and have been shown to improve overall network performance.
+ReLU: The non-linear activation function introduces non-linearity to the learning process, enabling the network to learn complex mappings between input data and labels.
+MaxPool2d: Pooling layers reduce dimensionality, condense feature representations, and imbue the network with a degree of translational invariance.
+
+### Mask Branch with Regularization
+Mirroring the image branch's structure, the mask branch processes single-channel grayscale images. The incorporation of dropout regularization after the final convolutional layer is a critical enhancement, aimed at improving the model's generalization to unseen data by mitigating the risk of overfitting.
+
+Dropout: A dropout rate of 50% is employed to prevent over-reliance on any particular neuron within the network, encouraging a more robust feature representation.
+
+### Combined Fully Connected Layers
+Following feature extraction, the two branches can either converge for a combined analysis or allow the image branch to proceed independently, providing a versatile approach to handling different testing scenarios. The fully connected layers integrate the learned representations, with a significant number of neurons (256) ensuring a rich feature combination before the final classification.
+
+Linear: The linear layers map the integrated features to the space of the output classes.
+Output Classes: The network concludes with a softmax output layer, providing probabilistic interpretations for each class in a multi-class classification setting.
+
+### Training and Testing Flexibility
+A key innovation of ImageMaskNet is its dual-mode operation. During training, the network learns from both image and mask inputs, while during testing, it can operate solely on the image input. This adaptability makes the model highly practical for clinical settings where segmentation masks might not be available.
+
+### Conclusion
+ImageMaskNet's architecture is a testament to modern neural network design, balancing depth and complexity with the need for practical application. By adopting batch normalization and dropout, it addresses the challenges of training stability and model generalization. The model's design embodies a forward-thinking approach to medical image analysis, prioritizing flexibility and robustness in equal measure.
 ## Training
 
 ## Model Evaluation and Validation:
