@@ -160,6 +160,10 @@ It's noteworthy that despite the high accuracy, the model did not reach a perfec
 ### ImageNoMaskNet Architecture Rationalization
 The ImageNoMaskNet  model introduces a novel dual-pathway architecture designed to leverage the complementary nature of ultrasound imagery and associated segmentation masks. While the model is trained using both types of inputs, its unique capability allows for flexible application, capable of making predictions with only ultrasound images during testing. This section details the architectural components and their functionality within the ImageNoMaskNet .
 
+![ImageMaskNet_Training_Mode_FlowDiagram](https://github.com/ekans24/Breast-Cancer-Detection-with-ImageMaskNet-CNN/assets/93953899/ee303906-6678-4fd3-8c0c-0166f9fea0dd)
+
+
+
 ### Enhanced Image Branch
 The image branch of ImageNoMaskNet is built upon a sequence of convolutional layers, each followed by batch normalization and ReLU activation to ensure non-linearity and stable training dynamics. The depth of the network is increased in this iteration, with three convolutional layers of 32, 64, and 128 filters respectively, each of which is designed to capture progressively more complex features within the imagery. After each convolutional operation, max pooling is applied to reduce the spatial dimensionality, enhancing the network's ability to focus on salient features while reducing computational requirements.
 
