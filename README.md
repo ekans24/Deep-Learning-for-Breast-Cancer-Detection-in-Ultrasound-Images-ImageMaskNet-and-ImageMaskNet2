@@ -302,6 +302,13 @@ To validate the models' effectiveness in a clinical setting, conducting controll
 
 In summary, this research presents a promising foundation for AI-driven breast cancer detection, but there is room for further development and integration into clinical practice to maximize its impact on early breast cancer diagnosis and treatment.
 
+## Conclusion
+In conclusion, this study has demonstrated the potential of deep learning models in the domain of breast cancer detection using ultrasound images. The development of ImageMaskNet and ImageMaskNet2, equipped with innovative dual-pathway architectures, has shown remarkable accuracy and precision in classifying breast ultrasound images into normal, benign, and malignant categories. These models offer practical applicability in real-world clinical scenarios, with ImageMaskNet2's adaptability in using image data alone standing out as a particularly valuable feature.
+
+While the study presents promising results, it's essential to acknowledge its limitations, including the dataset size, generalization to diverse populations, and model interpretability. Future work should focus on dataset expansion, integration into clinical workflows, enhancing model interpretability, continuous improvement, and conducting clinical trials to validate their effectiveness in improving patient care.
+
+The journey to AI-driven breast cancer detection is ongoing, and this research serves as a solid foundation for further advancements in this critical area of healthcare. With collaboration between AI researchers, medical professionals, and healthcare institutions, these models can contribute significantly to early breast cancer diagnosis and ultimately save lives.
+
 ## Citation
 In acknowledgment of the dataset's origin and in compliance with academic standards, we cite the following source for the dataset used in our project:
 Al-Dhabyani W, Gomaa M, Khaled H, Fahmy A. Dataset of breast ultrasound images. Data in Brief. 2020 Feb;28:104863. DOI: 10.1016/j.dib.2019.104863.
