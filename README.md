@@ -178,7 +178,7 @@ Following feature extraction, the two branches can either converge for a combine
 
 - **Linear:** The linear layers map the integrated features to the space of the output classes.
 
-- **Output Classes: **The network concludes with a softmax output layer, providing probabilistic interpretations for each class in a multi-class classification setting.
+- **Output Classes:** The network concludes with a softmax output layer, providing probabilistic interpretations for each class in a multi-class classification setting.
 
 ### Training and Testing Flexibility
 A key innovation of ImageMaskNet is its dual-mode operation. During training, the network learns from both image and mask inputs, while during testing, it can operate solely on the image input. This adaptability makes the model highly practical for clinical settings where segmentation masks might not be available.
