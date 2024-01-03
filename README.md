@@ -206,7 +206,9 @@ ImageMaskNet's architecture is a testament to modern neural network design, bala
 The following table summarizes the key performance metrics at the final epoch:
 
  final: Test Loss: 0.1135 - Test Accuracy: 0.9692
+
  Loss: 0.2638 - Accuracy: 0.9077 - Precision: 0.9054 - Recall: 0.8931
+
 | Metric  | 	Value |
 | ------------- | ------------- |
 |  |  |
